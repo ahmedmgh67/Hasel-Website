@@ -128,7 +128,7 @@ class App extends Component {
   }
 }
 
-
+ 
 class Pay extends React.Component{
 
   state={
@@ -157,12 +157,13 @@ class Pay extends React.Component{
     thej.map((item, i) => {
       if (item.id === id){
         this.setState({
+          id : item.id,
           amount: item.amount,
           user: item.user
         });
         
       }else{
-        console.log("it's not here" + i);
+        console.log("it's not here" +id);
       }
     })
   }
@@ -179,7 +180,7 @@ class Pay extends React.Component{
               <m.ListItem>
                 <m.ListItemText primary="Credit Card or Debit Card" secondary="Pay using Visa or MasterCard"/>
                 <m.ListItemSecondaryAction>
-                  <Link to="/pay/ccdc"><m.IconButton>
+                  <Link to={"/pay/ccdc" +"?id="+ this.state.id}><m.IconButton>
                     <i.ArrowForward/>
                   </m.IconButton></Link>
                 </m.ListItemSecondaryAction>
@@ -187,7 +188,7 @@ class Pay extends React.Component{
               <m.ListItem>
                 <m.ListItemText primary="Cash on Delivery" secondary="Our Representer will be on Your Door Step"/>
                 <m.ListItemSecondaryAction>
-                  <Link to="/pay/cod"><m.IconButton>
+                  <Link to={"/pay/cod?id=" + this.state.id}><m.IconButton>
                     <i.ArrowForward/>
                   </m.IconButton></Link>
                 </m.ListItemSecondaryAction>
@@ -206,6 +207,9 @@ class COD extends React.Component{
     address: '',
     city: '',
     phone: '',
+    id: 0,
+    amount : "",
+    user : ""
   };
 
   handleChange = name => event => {
@@ -214,13 +218,32 @@ class COD extends React.Component{
     });
   };
 
+  componentDidMount = () => {
+    let urlParams = new URLSearchParams(document.location.search.substring(1));
+    let id = parseInt(urlParams.get("id"));
+
+    thej.map((item, i) => {
+      if (item.id === id){
+        this.setState({
+          id : item.id,
+          amount: item.amount,
+          user: item.user
+        });
+        
+      }else{
+        console.log("it's not here" +id);
+      }
+    })
+  }
+
 
   render(){
     return(
       <m.Card className="card">
-        <Link to="/pay"><m.Button>
+        <Link to={"/pay?id=" + this.state.id} ><m.Button>
           <i.ArrowBack/> Back
         </m.Button></Link>
+        <m.Typography variant="h6" > Pay {this.state.amount} for {this.state.user}</m.Typography>
         <div className="form">
           <m.TextField 
           variant="outlined" 
@@ -256,7 +279,9 @@ class COD extends React.Component{
           label="City" 
           size="large" 
           className="forminput"/><br/>
+          <m.Button>Pay Now</m.Button>
         </div>
+        
       </m.Card>
     )
   }
@@ -264,14 +289,81 @@ class COD extends React.Component{
 
 
 class CCDC extends React.Component{
+  state ={
+    ccv: "",
+    cardnumber: "",
+    holderName: "",
+    expiry: "",
+    id: 0,
+    amount: "",
+    user: ""
+  }
+
+  handleChange = name => event => {
+    this.setState({
+      [name]: event.target.value,
+    });
+  };
+
+  componentDidMount = () => {
+    let urlParams = new URLSearchParams(document.location.search.substring(1));
+    let id = parseInt(urlParams.get("id"));
+
+    thej.map((item, i) => {
+      if (item.id === id){
+        this.setState({
+          id : item.id,
+          amount: item.amount,
+          user: item.user
+        });
+        
+      }else{
+        console.log("it's not here" +id);
+      }
+    })
+  }
+
   render() {
     return (
       <div>
         <m.Card className="card">
-          <Link to="/pay"><m.Button>
+          <Link to={"/pay?id=" + this.state.id}><m.Button>
             <i.ArrowBack/> Back
           </m.Button></Link>
-          
+          <m.Typography variant="h6">Pay {this.state.amount} for {this.state.user}</m.Typography>
+          <m.TextField 
+          variant="outlined" 
+          onChange={this.handleChange("cardNumber")} 
+          value={this.state.cardNumber} 
+          margin="normal" 
+          label="Card Number" 
+          size="large" 
+          className="forminput"/><br/>
+          <m.TextField 
+          variant="outlined" 
+          onChange={this.handleChange("expiry")} 
+          value={this.state.expiry} 
+          margin="normal" 
+          label="Expiry Date" 
+          size="large" 
+          className="forminput"/><br/>
+          <m.TextField 
+          variant="outlined" 
+          onChange={this.handleChange("ccv")} 
+          value={this.state.ccv} 
+          margin="normal" 
+          label="CCV (Security Code)" 
+          size="large" 
+          className="forminput"/><br/>
+          <m.TextField 
+          variant="outlined" 
+          onChange={this.handleChange("holderName")} 
+          value={this.state.holderName} 
+          margin="normal" 
+          label="Card Holder Name" 
+          size="large" 
+          className="forminput"/><br/>
+          <m.Button>Pay Now</m.Button>
         </m.Card>
       </div>
     );
