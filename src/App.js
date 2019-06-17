@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { Component } from 'react';
 import * as m from '@material-ui/core';
 import * as i from '@material-ui/icons';
@@ -12,114 +13,6 @@ import {Switch , Route, Link} from 'react-router-dom';
 import './App.css';
 
 
-
-var thej = [
-  {
-    id : 1,
-    amount : "5000",
-    user : "Confidence"
-  },
-  {
-    id : 2,
-    amount : "5000",
-    user : "Confidence"
-  },
-  {
-    id : 3,
-    amount : "5000",
-    user : "Confidence"
-  },
-  { 
-    id : 4,
-    amount : "5000",
-    user : "Confidence"
-  },
-  {
-    id : 5,
-    amount : "10000",
-    user : "Confidence"
-  },
-  {
-    id : 6,
-    amount : "5000",
-    user : "Confidence"
-  },
-  {
-    id : 7,
-    amount : "5000",
-    user : "Confidence"
-  },
-  {
-    id : 8,
-    amount : "5000",
-    user : "Confidence"
-  },
-  {
-    id : 9,
-    amount : "5000",
-    user : "Confidence"
-  },
-  {
-    id : 10,
-    amount : "5000",
-    user : "Confidence"
-  },
-  {
-    id : 11,
-    amount : "5000",
-    user : "Confidence"
-  },
-  {
-    id : 12,
-    amount : "5000",
-    user : "Confidence"
-  },
-  {
-    id : 13,
-    amount : "5000",
-    user : "Confidence"
-  },
-  {
-    id : 14,
-    amount : "5000",
-    user : "Confidence"
-  },
-  {
-    id : 15,
-    amount : "5000",
-    user : "Confidence"
-  },
-  {
-    id : 16,
-    amount : "5000",
-    user : "Confidence"
-  },
-  {
-    id : 17,
-    amount : "5000",
-    user : "Confidence"
-  },
-  {
-    id : 18,
-    amount : "5000",
-    user : "Confidence"
-  },
-  {
-    id : 19,
-    amount : "5000",
-    user : "Confidence"
-  },
-  {
-    id : 20,
-    amount : "5000",
-    user : "Confidence"
-  },
-  {
-    id : 21,
-    amount : "5000",
-    user : "Confidence"
-  },
-]
 
 class App extends Component {
   render() {
@@ -399,3 +292,112 @@ class CCDC extends React.Component{
 
 
 export default App;
+
+// eslint-disable-next-line no-unused-vars
+var thej = [
+  {
+    id : 1,
+    amount : "5000",
+    user : "Confidence"
+  },
+  {
+    id : 2,
+    amount : "5000",
+    user : "Confidence"
+  },
+  {
+    id : 3,
+    amount : "5000",
+    user : "Confidence"
+  },
+  { 
+    id : 4,
+    amount : "5000",
+    user : "Confidence"
+  },
+  {
+    id : 5,
+    amount : "10000",
+    user : "Confidence"
+  },
+  {
+    id : 6,
+    amount : "5000",
+    user : "Confidence"
+  },
+  {
+    id : 7,
+    amount : "5000",
+    user : "Confidence"
+  },
+  {
+    id : 8,
+    amount : "5000",
+    user : "Confidence"
+  },
+  {
+    id : 9,
+    amount : "5000",
+    user : "Confidence"
+  },
+  {
+    id : 10,
+    amount : "5000",
+    user : "Confidence"
+  },
+  {
+    id : 11,
+    amount : "5000",
+    user : "Confidence"
+  },
+  {
+    id : 12,
+    amount : "5000",
+    user : "Confidence"
+  },
+  {
+    id : 13,
+    amount : "5000",
+    user : "Confidence"
+  },
+  {
+    id : 14,
+    amount : "5000",
+    user : "Confidence"
+  },
+  {
+    id : 15,
+    amount : "5000",
+    user : "Confidence"
+  },
+  {
+    id : 16,
+    amount : "5000",
+    user : "Confidence"
+  },
+  {
+    id : 17,
+    amount : "5000",
+    user : "Confidence"
+  },
+  {
+    id : 18,
+    amount : "5000",
+    user : "Confidence"
+  },
+  {
+    id : 19,
+    amount : "5000",
+    user : "Confidence"
+  },
+  {
+    id : 20,
+    amount : "5000",
+    user : "Confidence"
+  },
+  {
+    id : 21,
+    amount : "5000",
+    user : "Confidence"
+  },
+]
