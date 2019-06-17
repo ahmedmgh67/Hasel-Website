@@ -1,7 +1,14 @@
 import React, { Component } from 'react';
 import * as m from '@material-ui/core';
 import * as i from '@material-ui/icons';
-import {Switch , Redirect, Route, Link} from 'react-router-dom';
+import './bootstrap.css';
+import axios from 'axios';
+import './style.css';
+import './themify-icons.css';
+import './icomoon.css';
+import mobileapp from './images/mobileapp.jpg';
+import logo from './typoperfect.png';
+import {Switch , Route, Link} from 'react-router-dom';
 import './App.css';
 
 
@@ -22,7 +29,7 @@ var thej = [
     amount : "5000",
     user : "Confidence"
   },
-  {
+  { 
     id : 4,
     amount : "5000",
     user : "Confidence"
@@ -122,13 +129,58 @@ class App extends Component {
           <Route exact path="/pay/ccdc" component={ CCDC }/>
           <Route exact path="/pay/cod" component={ COD }/>
           <Route exact path="/pay" component={ Pay }/>
+          <Route exact path="/" component={ Landing }/>
         </Switch>
       </div>
     );
   }
 }
 
- 
+
+class Landing extends React.Component{
+  render(){
+    return(
+      <div>
+        <div id="head-top" >
+          <div className="gtco-top" >
+            <div className="container-fluid">
+              <div className="row">
+                <div className="col-md-6 col-xs-6">
+                  <div id="gtco-logo"><img className="logo" alt=""src={ logo }/>{/*<a href="index.html">Confidence<em>.</em></a>*/}</div>
+                </div>
+                <div className="col-md-6 col-xs-6 social-icons">
+                  <ul className="gtco-social-top">
+                    <li><a href="#"><i className="icon-facebook"></i></a></li>
+                    <li><a href="#"><i className="icon-twitter"></i></a></li>
+                    <li><a href="#"><i className="icon-linkedin"></i></a></li>
+                    <li><a href="#"><i className="icon-instagram"></i></a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>	
+          </div>
+          
+        </div>
+        
+        <header id="gtco-header" className="gtco-cover gtco-cover-md" role="banner" data-stellar-background-ratio="0.5">
+          <div className="overlay"></div>
+          <div className="gtco-container">
+            <div className="row row-mt-15em">
+              <div className="col-md-2 mt-text text-right animate-box" data-animate-effect="fadeInUp">
+                <h1>Hasel  Your Money <strong>Now.</strong></h1>
+                <div className="text-center"><a href="https://facebook.com/confidda" className="btn btn-primary btn-lg popup-vimeo">Send Message</a></div>
+              </div>
+              <div className="col-md-40 text-center">
+                <img src={mobileapp} alt="" className="img-responsive"/>
+              </div>
+            </div>
+          </div>
+        </header>
+      </div>
+    );
+  }
+}
+
 class Pay extends React.Component{
 
   state={
@@ -141,30 +193,14 @@ class Pay extends React.Component{
 
   componentDidMount = () =>{
     let urlParams = new URLSearchParams(document.location.search.substring(1));
-    let id = parseInt(urlParams.get("id"));
+    let id = urlParams.get("id");
     console.log(id);
-
-    /*for (let i = 0; i < thej.length; i++) {
-      if (thej[i].id === id){
-        this.setState({
-          amount: thej[i].amount,
-          user: thej[i].user
-        });
-      }else{
-        continue;
-      }
-    }*/
-    thej.map((item, i) => {
-      if (item.id === id){
-        this.setState({
-          id : item.id,
-          amount: item.amount,
-          user: item.user
-        });
-        
-      }else{
-        console.log("it's not here" +id);
-      }
+    axios.get("http://url/api/searchTransictions/" + id).then((data) => {
+      this.setState({
+        id: data._id,
+        amount: data.amount,
+        user: data.user
+      });
     })
   }
   render(){
@@ -173,14 +209,14 @@ class Pay extends React.Component{
           <m.CardContent>
             <m.Typography variant="h6">{this.state.user}</m.Typography>
             <m.Avatar sizes="large" aria-label="Reciepe" className="avatar">
-              C
+              this.state.
             </m.Avatar>
             <m.Typography id="amount" variant="h6">{this.state.amount + "  "} EGP</m.Typography>
             <m.List>
               <m.ListItem>
                 <m.ListItemText primary="Credit Card or Debit Card" secondary="Pay using Visa or MasterCard"/>
                 <m.ListItemSecondaryAction>
-                  <Link to={"/pay/ccdc" +"?id="+ this.state.id}><m.IconButton>
+                  <Link to={"/pay/ccdc?id="+ this.state.id}><m.IconButton>
                     <i.ArrowForward/>
                   </m.IconButton></Link>
                 </m.ListItemSecondaryAction>
@@ -196,7 +232,7 @@ class Pay extends React.Component{
             </m.List>
           </m.CardContent>
         </m.Card>
-    )
+    );
   }
 }
 
@@ -222,18 +258,14 @@ class COD extends React.Component{
     let urlParams = new URLSearchParams(document.location.search.substring(1));
     let id = parseInt(urlParams.get("id"));
 
-    thej.map((item, i) => {
-      if (item.id === id){
-        this.setState({
-          id : item.id,
-          amount: item.amount,
-          user: item.user
-        });
-        
-      }else{
-        console.log("it's not here" +id);
-      }
-    })
+    axios.get("http://url/api/searchTransictions/" + id).then((data) => {
+      this.setState({
+        id: data._id,
+        amount: data.amount,
+        user: data.user
+      });
+    });
+    return 0;
   }
 
 
@@ -309,18 +341,13 @@ class CCDC extends React.Component{
     let urlParams = new URLSearchParams(document.location.search.substring(1));
     let id = parseInt(urlParams.get("id"));
 
-    thej.map((item, i) => {
-      if (item.id === id){
-        this.setState({
-          id : item.id,
-          amount: item.amount,
-          user: item.user
-        });
-        
-      }else{
-        console.log("it's not here" +id);
-      }
-    })
+    axios.get("http://url/api/searchTransictions/" + id).then((data) => {
+      this.setState({
+        id: data._id,
+        amount: data.amount,
+        user: data.user
+      });
+    });
   }
 
   render() {
